@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  ul
+  li
+    a(href="/error") #{'跳转->错误回放页'}
+  li
+    a(href="/performance") #{'跳转->性能监控页'} 
