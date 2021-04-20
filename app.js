@@ -6,8 +6,13 @@ const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 
 const routes = require('./routes')
+const db = require('./modals')
 const app = new Koa()
 
+// init database
+db.sequelize.sync({ force: true }).then(() => {
+  console.log("删除数据库重启");
+})
 
 // error handler
 onerror(app)

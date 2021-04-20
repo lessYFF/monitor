@@ -1,24 +1,21 @@
 const router = require('koa-router')()
+const errorControllers = require('../controllers/error')
 
-router.prefix('/error')
+router.prefix('/api/error')
 
-// 临时存储数据;
-let stempData= {
-    test: 123
-};
-router.get('/', async (ctx, next) => {
-    await ctx.render('playback', {
-        title: 'error page!',
-    })
-})
+// create
+router.post('/', errorControllers.create)
 
-router.post('/report', (ctx, next) => {
-    stempData = ctx.request.body
-    ctx.body = 'true'
-})
+// query
+router.get('/', errorControllers.findAll)
+router.get('/:id', errorControllers.findOne)
 
-router.get('/play', async (ctx, next) => {
-    ctx.body = stempData
-})
+// update
+router.put('/:id', errorControllers.update)
+
+// delete
+router.delete('/', errorControllers.deleteAll)
+router.delete('/:id', errorControllers.deleteOne)
+
 
 module.exports = router

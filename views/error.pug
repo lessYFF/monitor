@@ -1,6 +1,31 @@
 extends layout
 
+block head 
+  link(rel='stylesheet', href='/css/error.css')
+  script(src="https://cdn.jsdelivr.net/npm/vue")
 block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+  h2 异常列表
+  .error_list#app 
+    .error_list__row.row_header
+      .error_item__column 序号
+      .error_item__column ID
+      .error_item__column 类型
+      .error_item__column 错误信息
+      .error_item__column 错误描述
+      .error_item__column 更新时间
+      .error_item__column 操作
+    <div class="error_list__row" v-for="(item, index) of errorList">
+      <div class="error_item__column"> {{ index+1 }} </div>
+      <div class="error_item__column"> {{ item.id }} </div>
+      <div class="error_item__column"> {{ item.type }} </div>
+      <div class="error_item__column"> {{ item.info }} </div>
+      <div class="error_item__column"> {{ item.description }} </div>
+      <div class="error_item__column"> {{ item.updatedAt }} </div> 
+      <div class="error_item__column"> 
+          <a class="error_item__column-btn" @click.stop="routeToFixPage(item)">排查</a> 
+          <a class="error_item__column-btn" v-if="item.record_id" @click.stop="routeToReplayPage(item.record_id)">回放</a>
+      </div>
+    </div>  
+  script(src="/scripts/error/index.js")
+
+
