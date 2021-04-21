@@ -1,0 +1,19 @@
+extends layout
+
+block head 
+  link(rel='stylesheet', href='/css/email.css')
+block content
+  h2 异常明细!
+  .email
+    .email_column
+        .email_column__row id: #{id}
+        .email_column__row 类型: #{type}
+        .email_column__row 错误信息: #{info}
+        .email_column__row 错误描述: #{description}
+        .email_column__row 创建时间: #{createdAt}
+        .email_column__row 更新时间: #{updatedAt}
+        .email_column__row
+            if record_id !== undefined
+              <a class="email_column__row_btn" href="#{'http://localhost:3000/replayPage?id='+record_id}"> 回放</a>
+
+

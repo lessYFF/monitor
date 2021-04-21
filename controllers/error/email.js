@@ -1,4 +1,6 @@
+const path = require('path')
 const nodemailer = require('nodemailer')
+const { pugEngine } = require('nodemailer-pug-engine')
 
 const transporter = nodemailer.createTransport({
     service: 'qq', // 使用了内置传输发送邮件 查看支持列表：https://nodemailer.com/smtp/well-known/
@@ -10,14 +12,35 @@ const transporter = nodemailer.createTransport({
     },
 })
 
+// format object first level value to string
+const formatObjectFirstLevelValueToString = (arg) => {
+    if (!arg || !Object.keys(arg).length) return {}
+
+    const obj = {}
+    Object.getOwnPropertyNames(arg).forEach((key) => {
+        obj[key] = typeof arg[key] === 'object' ? JSON.stringify(arg[key]) : arg[key]
+    })
+    console.log('obj', obj)
+    return obj
+} 
+
+// use pug template
+transporter.use(
+    'compile',
+    pugEngine({
+        templateDir: path.join(__dirname + '../../../views'),
+    })
+)
+
 // send mail with defined transport object
 const sendEmail = function(info) {
-    let mailOptions = {
+    const mailOptions = {
         from: '"Bruce yff" <1289368061@qq.com>', // sender address
         to: 'shijunzi@fanhaoyue.com', // list of receivers
         subject: info.title || '错误告警', // Subject line
-        // 发送text或者html格式
-        html: info.body || '<b>Hello world?</b>', // html body
+        // 发送text、html格式或使用模版
+        template: 'email',
+        ctx: formatObjectFirstLevelValueToString(info.dataValues),
     }
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {

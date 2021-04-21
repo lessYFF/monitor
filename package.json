@@ -21,6 +21,7 @@
     "koa-views": "^6.2.0",
     "mysql2": "^2.2.5",
     "nodemailer": "^6.5.0",
+    "nodemailer-pug-engine": "^2.0.1",
     "pug": "^2.0.3",
     "sequelize": "^6.6.2"
   },

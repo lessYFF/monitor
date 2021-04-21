@@ -26,7 +26,7 @@ const create = async (ctx, next) => {
         ...res,
     }
     
-    await Error.create(errroInfo)
+    const data = await Error.create(errroInfo)
 
     // 存在回放纪录才存
     if (hasRecord) {
@@ -38,7 +38,7 @@ const create = async (ctx, next) => {
         })
         await Record.bulkCreate(recordList)
     }
-    //sendEmail({})
+    sendEmail(data)
     ctx.body = true
     ctx.status = 200
 }
