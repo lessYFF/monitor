@@ -22,7 +22,7 @@ block content
       <div class="error_item__column"> {{ item.description }} </div>
       <div class="error_item__column"> {{ item.updatedAt }} </div> 
       <div class="error_item__column"> 
-          <a class="error_item__column-btn" @click.stop="routeToFixPage(item)">排查</a> 
+          <a class="error_item__column-btn" @click.stop="routeToResolvePage(item.id)">排查</a> 
           <a class="error_item__column-btn" v-if="item.record_id" @click.stop="routeToReplayPage(item.record_id)">回放</a>
       </div>
     </div>  

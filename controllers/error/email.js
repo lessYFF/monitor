@@ -17,16 +17,15 @@ const formatObjectFirstLevelValueToString = (arg) => {
     if (!arg || !Object.keys(arg).length) return {}
 
     const obj = {}
-    Object.getOwnPropertyNames(arg).forEach((key) => {
+    Object.getOwnPropertyNames(arg).forEach(key => {
         obj[key] = typeof arg[key] === 'object' ? JSON.stringify(arg[key]) : arg[key]
     })
-    console.log('obj', obj)
+
     return obj
 } 
 
 // use pug template
-transporter.use(
-    'compile',
+transporter.use('compile',
     pugEngine({
         templateDir: path.join(__dirname + '../../../views'),
     })
@@ -43,9 +42,8 @@ const sendEmail = function(info) {
         ctx: formatObjectFirstLevelValueToString(info.dataValues),
     }
     transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            return console.log(error)
-        }
+        if (error) return console.log(error)
+
         console.log('Message sent: %s', info.messageId)
     })
 }

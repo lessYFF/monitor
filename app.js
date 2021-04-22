@@ -10,7 +10,7 @@ const db = require('./modals')
 const app = new Koa()
 
 // init database
-db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync({ force: false }).then(() => {
   console.log("删除数据库重启");
 })
 

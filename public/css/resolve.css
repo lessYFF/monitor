@@ -1,0 +1,30 @@
+h2 {
+    color: #1f2f3d;
+}
+.email {
+    padding: 20px;
+    border-left: 1px solid #eee;
+}
+.email_column {
+    display: flex;
+    flex-flow: column nowrap;
+}
+.email_column__row {
+    margin-bottom: 12px;
+}
+.email_column__row:last-child {
+    margin-bottom: 0;
+}
+.email_column__row-label {
+    display: inline-block;
+    width: 80px;
+    margin-right: 12px;
+    text-align: right;
+}
+.email_column__row_btn {
+    margin-left: 92px;
+    cursor: pointer;
+}
+.email_column__row_btn:hover {
+    text-decoration: underline;
+}

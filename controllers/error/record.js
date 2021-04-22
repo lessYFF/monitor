@@ -20,7 +20,7 @@ const findAll = async (ctx, next) => {
         where: { error_id: id },
         attributes: ['info'],
     }).then((data) => {
-        ctx.body = data.map(item => {
+        ctx.body = data.map((item) => {
             return JSON.parse(item.info)
         })
         ctx.status = 200
@@ -50,5 +50,5 @@ const deleteAll = async (ctx, next) => {
 
 module.exports = {
     findAll,
-    deleteAll
+    deleteAll,
 }

@@ -22,8 +22,8 @@ new Vue({
             window.location.href = `/replayPage?id=${id}`
         },
         // 跳转定位错误页
-        routeToFixPage(item) {
-            //window.location.href = `/replay?id=${id}`
+        routeToResolvePage(id) {
+            window.location.href = `/resolvePage?id=${id}`
         },
     },
 })

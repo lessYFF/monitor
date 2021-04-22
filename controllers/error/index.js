@@ -38,14 +38,14 @@ const create = async (ctx, next) => {
         })
         await Record.bulkCreate(recordList)
     }
-    sendEmail(data)
+    //sendEmail(data)
     ctx.body = true
     ctx.status = 200
 }
 
 // 查询一条数据
 const findOne = async (ctx, next) => {
-    const id = ctx.request.query.id
+    const { id } = ctx.params
     if (!id) {
         ctx.body = {
             message: 'find error~',
@@ -72,7 +72,7 @@ const findAll = async (ctx, next) => {
 
 // 更新指定一条数据
 const update = async (ctx, next) => {
-    const id = ctx.request.params.id
+    const { id } = ctx.params
     if (!id) {
         ctx.body = {
             message: 'find error~',
@@ -98,7 +98,7 @@ const update = async (ctx, next) => {
 
 // 删除指定一条数据
 const deleteOne = async (ctx, next) => {
-    const id = ctx.request.query.id
+    const { id } = ctx.params
     if (!id) {
         ctx.body = {
             message: 'delete error~',

@@ -1,5 +1,5 @@
 const router = require('koa-router')()
-const recordControllers = require('../controllers/record')
+const recordControllers = require('../controllers/error/record')
 
 router.prefix('/api/replay')
 

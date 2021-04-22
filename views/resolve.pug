@@ -1,0 +1,33 @@
+extends layout
+
+block head 
+    link(rel="stylesheet", href="/css/resolve.css")
+    script(src="https://cdn.jsdelivr.net/npm/vue")
+block content
+    h2 异常明细!
+    .email#app
+        .email_column
+            <div class="email_column__row">
+                <span class="email_column__row-label">id:</span>{{errorInfo.id}}
+            </div>
+            <div class="email_column__row">
+                <span class="email_column__row-label">类型:</span>{{errorInfo.type}}
+            </div>
+            <div class="email_column__row">
+                <span class="email_column__row-label">错误信息:</span>{{errorInfo.info}}
+            </div>
+            <div class="email_column__row">
+                <span class="email_column__row-label">错误描述:</span>{{errorInfo.description}}
+            </div>
+            <div class="email_column__row">
+                <span class="email_column__row-label">创建时间:</span>{{errorInfo.createdAt}}
+            </div>
+            <div class="email_column__row">
+                <span class="email_column__row-label">更新时间:</span>{{errorInfo.updatedAt}}
+            </div>
+            <div class="email_column__row">
+                <a class="email_column__row_btn" > 上传sourceMap</a>
+            </div>
+    script(src="/scripts/resolve/index.js")
+
+
