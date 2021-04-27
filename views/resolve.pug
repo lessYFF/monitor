@@ -5,28 +5,48 @@ block head
     script(src="https://cdn.jsdelivr.net/npm/vue")
 block content
     h2 异常明细!
-    .email#app
-        .email_column
-            <div class="email_column__row">
-                <span class="email_column__row-label">id:</span>{{errorInfo.id}}
+    .resolve#app
+        .resolve_column
+            <div class="resolve_column__row">
+                <span class="resolve_column__row-label">id:</span>{{errorInfo.id}}
             </div>
-            <div class="email_column__row">
-                <span class="email_column__row-label">类型:</span>{{errorInfo.type}}
+            <div class="resolve_column__row">
+                <span class="resolve_column__row-label">类型:</span>{{errorInfo.type}}
             </div>
-            <div class="email_column__row">
-                <span class="email_column__row-label">错误信息:</span>{{errorInfo.info}}
+            <div class="resolve_column__row">
+                <span class="resolve_column__row-label">错误信息:</span>{{errorInfo.info}}
             </div>
-            <div class="email_column__row">
-                <span class="email_column__row-label">错误描述:</span>{{errorInfo.description}}
+            <div class="resolve_column__row">
+                <span class="resolve_column__row-label">错误描述:</span>{{errorInfo.description}}
             </div>
-            <div class="email_column__row">
-                <span class="email_column__row-label">创建时间:</span>{{errorInfo.createdAt}}
+            <div class="resolve_column__row">
+                <span class="resolve_column__row-label">创建时间:</span>{{errorInfo.createdAt}}
             </div>
-            <div class="email_column__row">
-                <span class="email_column__row-label">更新时间:</span>{{errorInfo.updatedAt}}
+            <div class="resolve_column__row">
+                <span class="resolve_column__row-label">更新时间:</span>{{errorInfo.updatedAt}}
             </div>
-            <div class="email_column__row">
-                <a class="email_column__row_btn" > 上传sourceMap</a>
+            <div class="resolve_column__row">
+                <a class="resolve_column__row_btn" @click.stop="uploadSourceMap">上传sourceMap</a>
+            </div>
+            <div class="resolve_column__row">
+                <form>
+                    <input type="file" name="file" />
+                </form>
+            </div>
+            <div class="resolve_source" v-if="sourceInfo.source">
+                <h3>异常源码信息</h3>
+                <div class="resolve_column__row">
+                    <span class="resolve_column__row-label">行号:</span>{{sourceInfo.line}}
+                </div>
+                <div class="resolve_column__row">
+                    <span class="resolve_column__row-label">列号:</span>{{sourceInfo.column}}
+                </div>
+                <div class="resolve_column__row">
+                    <span class="resolve_column__row-label">明细:</span>{{sourceInfo.name}}
+                </div>
+                <div class="resolve_column__row">
+                    <span class="resolve_column__row-label">源码文件:</span>{{sourceInfo.source}}
+                </div>
             </div>
     script(src="/scripts/resolve/index.js")
 
